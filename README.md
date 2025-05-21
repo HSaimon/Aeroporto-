@@ -1,87 +1,128 @@
-# Cadastro de Passageiros Refatorado (Conforme Exemplo)
+💼 Atividade de Programação em Java: Sistema de Cadastro de Passageiros
+🎯 Objetivo
+Desenvolver um sistema simples de cadastro de passageiros utilizando Java, com funcionalidades de validação de CPF e e-mail, armazenamento em memória e testes automatizados.
 
-Este projeto implementa um sistema simples de cadastro de passageiros utilizando Java, seguindo o padrão de um exemplo fornecido. Utiliza Maven para gerenciamento de dependências, JUnit 5 para testes automatizados e JaCoCo para relatório de cobertura de testes.
+📦 Requisitos do Sistema
+1. Criar a Classe Passageiro
 
-## Funcionalidades
+A classe deve conter os seguintes atributos:
+int id
+String nome
+String cpf
+String email
 
-- Cadastro de passageiros com ID, nome, CPF e e-mail.
-- Métodos estáticos na classe `Passageiro` para validação de CPF (formato e dígitos verificadores) e formato de e-mail, retornando `boolean`.
-- O construtor da classe `Passageiro` não lança exceções por dados inválidos, apenas atribui os valores. A validação ocorre antes da instanciação na lógica de cadastro.
-- Armazenamento de passageiros em memória (ArrayList).
-- Menu interativo no console para:
-    - Cadastrar novo passageiro (com validação de CPF/e-mail e checagem de CPF duplicado antes de adicionar).
-    - Listar passageiros cadastrados.
-    - Sair do sistema.
-- Testes automatizados com JUnit 5 para as classes `Passageiro` e `MainApp`.
-- Relatório de cobertura de testes gerado pelo JaCoCo.
+Inclua métodos para:
 
-## Estrutura do Projeto
+Validar o CPF (utilize uma lógica adequada para verificação de CPF).
+Validar o e-mail (use regex ou métodos disponíveis para validação de formato).
 
-O projeto segue a estrutura padrão Maven, com o código fonte em `src/main/java/org/example/` e os testes em `src/test/java/org/example/`.
+2. Armazenamento
+Utilize uma ArrayList<Passageiro> para armazenar os objetos da classe Passageiro.
 
-```
-cadastro-passageiros-refatorado/
-├── pom.xml
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── org/
-│   │           └── example/
-│   │               ├── MainApp.java       (Menu interativo e lógica principal)
-│   │               └── Passageiro.java    (Classe de entidade Passageiro com métodos de validação)
-│   └── test/
-│       └── java/
-│           └── org/
-│               └── example/
-│                   ├── MainAppTest.java   (Testes para MainApp)
-│                   └── PassageiroTest.java(Testes para a classe Passageiro)
-└── target/ (Gerado pelo Maven)
-    ├── classes/
-    ├── test-classes/
-    ├── surefire-reports/ (Resultados dos testes JUnit)
-    ├── jacoco.exec       (Dados de cobertura JaCoCo)
-    └── site/
-        └── jacoco/         (Relatório de cobertura JaCoCo - abrir index.html)
-    └── cadastro-passageiros-refatorado-1.0-SNAPSHOT.jar (Arquivo JAR executável)
-```
+Os passageiros cadastrados devem poder ser recuperados e listados posteriormente.3. Criar Menu Interativo (Console)
 
-## Pré-requisitos
+Desenvolva um menu simples no método main da classe MainApp, com as seguintes opções:
+1 - Cadastrar passageiro
+2 - Listar passageiros
+3 - Sair
 
-- Java Development Kit (JDK) 11 ou superior instalado (o projeto foi configurado para Java 11 no `pom.xml`, mas o exemplo original mencionava Java 17. Se houver problemas, ajuste a versão no `pom.xml` para 17).
-- Apache Maven instalado.
+🧪 Testes Automatizados
 
-## Como Compilar e Executar
+Utilize JUnit 5 para criar os seguintes testes:
+Verificação de CPF válido e inválido.
+Verificação de e-mail válido e inválido.
+Testar se a função de cadastro está inserindo corretamente os passageiros na lista.
 
-1.  **Clone o repositório ou descompacte o arquivo .zip do projeto.**
-2.  **Navegue até o diretório raiz do projeto** (`cadastro-passageiros-refatorado`) usando o terminal.
+🛠️ Tecnologias e Ferramentas
 
-3.  **Compile o projeto, execute os testes e gere o relatório de cobertura:**
-    O comando `mvn clean install` fará tudo isso, pois o plugin JaCoCo está configurado para gerar o relatório na fase `prepare-package` (que é executada durante o `install`).
-    ```bash
-    mvn clean install
-    ```
-    Se preferir rodar apenas os testes e o relatório sem instalar o artefato no repositório local:
-    ```bash
-    mvn clean test jacoco:report
-    ```
-    (Nota: a configuração do JaCoCo no `pom.xml` está para a fase `prepare-package`, então `mvn clean package` ou `mvn clean install` são mais garantidos para acionar o relatório conforme o exemplo. `mvn clean test jacoco:report` também deve funcionar se o `jacoco.exec` for gerado corretamente pelos testes.)
+Linguagem: Java
+Gerenciador de dependências: Maven
+Framework de testes: JUnit 5
+Cobertura de testes: JaCoCo
 
-4.  **Para executar a aplicação (menu interativo no console):**
-    Após a compilação (`mvn clean install` ou `mvn clean package`), o arquivo JAR estará em `target/cadastro-passageiros-refatorado-1.0-SNAPSHOT.jar`.
-    Execute o JAR com o seguinte comando:
-    ```bash
-    java -cp target/cadastro-passageiros-refatorado-1.0-SNAPSHOT.jar org.example.MainApp
-    ```
+🧱 Estrutura do Sistema
+1. 📄 Classe Passageiro
+Atributos:
+int id
+String nome
+String cpf
+String email
+Requisitos:
+Validar CPF (utilize uma lógica correta).
+Validar e-mail (regex).
 
-## Como Visualizar o Relatório de Cobertura de Testes (JaCoCo)
+2. 🛩️ Classe Aviao
+Atributos:
+int id
+String modelo
+int capacidade
+String fabricante
+Requisitos:
+Validar que a capacidade seja maior que zero.
+Cada avião poderá ser associado a um ou mais voos.
 
-1.  Após executar `mvn clean install` (ou outro comando que execute a fase `prepare-package` ou `test` e `jacoco:report`), o relatório será gerado.
-2.  Abra o arquivo `target/site/jacoco/index.html` em seu navegador web para visualizar o relatório detalhado de cobertura.
+3. ✈️ Classe Voo
+Atributos:
+int id
+String origem
+String destino
+LocalDateTime dataHora
+Aviao aviao
+Requisitos:
+Deve estar vinculado a um avião.
+As vagas disponíveis são calculadas com base na capacidade do avião menos o número de reservas existentes.
 
-## Tecnologias Utilizadas
+4. 🎫 Classe Reserva
+Atributos:
+int id
+Passageiro passageiro
+Voo voo
+LocalDateTime dataReserva
+Requisitos:
+Deve verificar a disponibilidade de vagas no voo antes de criar a reserva.
 
-- **Linguagem:** Java 11 (configurado no `pom.xml`)
-- **Gerenciador de Dependências:** Apache Maven
-- **Framework de Testes:** JUnit 5 (Jupiter API, Engine, Params - versão 5.12.2)
-- **Cobertura de Testes:** JaCoCo (versão 0.8.13)
+🗃️ Armazenamento
+Use listas para manter os dados em memória:
+ArrayList<Passageiro>
+ArrayList<Aviao>
+ArrayList<Voo>
+ArrayList<Reserva>
 
+🖥️ Menu Interativo no Console
+Implemente um menu na classe MainApp com as seguintes opções:
+CopyEdit
+1 - Cadastrar passageiro  
+2 - Listar passageiros  
+3 - Cadastrar avião  
+4 - Listar aviões  
+5 - Cadastrar voo  
+6 - Listar voos  
+7 - Reservar passagem  
+8 - Listar reservas  
+9 - Sair
+
+🖥️ Casos de Teste – Sistema de Passagens Aéreas
+1. Validação de Passageiros
+Testar CPF válido (exemplo: "52998224725") → Deve retornar true
+Testar CPF inválido (exemplo: "12345678900") → Deve retornar false
+Testar e-mail válido (exemplo: "ana.souza@email.com") → Deve retornar true
+Testar e-mail inválido (exemplo: "ana.souza@com") → Deve retornar false
+2. Cadastro de Passageiros
+Cadastrar passageiro com dados válidos → Deve adicionar à lista
+Tentar cadastrar passageiro com CPF inválido → Deve falhar ou lançar exceção
+3. Cadastro de Aviões
+Cadastrar avião com modelo e capacidade válidos → Deve ser salvo corretamente
+Tentar cadastrar avião com capacidade zero → Deve lançar exceção ou falhar
+Tentar cadastrar avião com capacidade negativa → Deve lançar exceção ou falhar
+4. Cadastro de Voos
+Cadastrar voo com origem, destino, data e avião válido → Deve ser salvo corretamente
+Tentar cadastrar voo sem avião associado → Deve lançar exceção ou falhar
+5. Reserva de Passagens
+Criar reserva com vagas disponíveis → Deve ser realizada com sucesso
+Criar reserva quando todas as vagas estiverem ocupadas → Deve falhar ou lançar exceção
+Criar reserva duplicada para o mesmo passageiro e voo → Deve impedir ou notificar (se implementado)
+6. Listagens
+Listar passageiros após 3 cadastros → Deve retornar 3 registros
+Listar aviões após 2 cadastros → Deve retornar 2 registros
+Listar voos após 1 cadastro → Deve retornar 1 registro com dados do avião
+Listar reservas após 2 registros → Deve retornar 2 reservas com passageiro e voo
